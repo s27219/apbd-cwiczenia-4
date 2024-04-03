@@ -7,7 +7,7 @@ namespace LegacyApp
         public bool AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId)
         {
             //old
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
+            /*if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
             {
                 return false;
             }
@@ -24,13 +24,13 @@ namespace LegacyApp
             if (age < 21)
             {
                 return false;
-            }
+            }*/
             
             //new
-            /*if (!IsValidUserInfo(firstName, lastName, email, dateOfBirth))
+            if (!IsValidUserInfo(firstName, lastName, email, dateOfBirth))
             {
                 return false;
-            }*/
+            }
 
             var clientRepository = new ClientRepository();
             var client = clientRepository.GetById(clientId);
@@ -43,8 +43,9 @@ namespace LegacyApp
                 FirstName = firstName,
                 LastName = lastName
             };
-
-            if (client.Type == "VeryImportantClient")
+            
+            //old
+            /*if (client.Type == "VeryImportantClient")
             {
                 user.HasCreditLimit = false;
             }
@@ -65,8 +66,11 @@ namespace LegacyApp
                     int creditLimit = userCreditService.GetCreditLimit(user.LastName, user.DateOfBirth);
                     user.CreditLimit = creditLimit;
                 }
-            }
+            }*/
 
+            //new
+            user.setupCreditLimit();
+            
             if (user.HasCreditLimit && user.CreditLimit < 500)
             {
                 return false;
@@ -77,7 +81,7 @@ namespace LegacyApp
         }
         
         //new
-        /*private bool IsValidUserInfo(string firstName, string lastName, string email, DateTime dateOfBirth)
+        private bool IsValidUserInfo(string firstName, string lastName, string email, DateTime dateOfBirth)
         {
             var now = DateTime.Now;
             int age = now.Year - dateOfBirth.Year;
@@ -87,6 +91,6 @@ namespace LegacyApp
                 return false;
             }
             return true;
-        }*/
+        }
     }
 }

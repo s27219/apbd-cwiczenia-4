@@ -12,14 +12,13 @@ public class UserServiceTests
         // Act
         var result = userService.AddUser(
             null, 
-            "Kowalski", 
+            "Malewski", 
             "kowalski@kowalski.pl",
             DateTime.Parse("2000-01-01"),
-            1
+            2
         );
 
         // Assert
-        // Assert.Equal(false, result);
         Assert.False(result);
     }
     
@@ -38,7 +37,7 @@ public class UserServiceTests
             null, 
             "kowalski@kowalski.pl",
             DateTime.Parse("2000-01-01"),
-            1
+            2
         );
 
         // Assert
@@ -55,10 +54,10 @@ public class UserServiceTests
         // Act
         var result = userService.AddUser(
             "Jan", 
-            "Kowalski", 
+            "Malewski", 
             "kowalskikowalskipl",
             DateTime.Parse("2000-01-01"),
-            1
+            2
         );
 
         // Assert
@@ -75,10 +74,10 @@ public class UserServiceTests
         // Act
         var result = userService.AddUser(
             "Jan", 
-            "Kowalski", 
+            "Malewski", 
             "kowalski@kowalski.pl",
             DateTime.Parse("2010-01-01"),
-            1
+            2
         );
 
         // Assert
@@ -95,7 +94,7 @@ public class UserServiceTests
         // Act
         var result = userService.AddUser(
             "Jan", 
-            "Kowalski", 
+            "Malewski", 
             "kowalski@kowalski.pl",
             DateTime.Parse("2000-01-01"),
             2
@@ -146,8 +145,8 @@ public class UserServiceTests
         Assert.True(result);
     }
     
-    /*[Fact]
-    public void AddUser_ReturnsFalseWhenNormalClientWithNoCreditLimit()
+    [Fact]
+    public void AddUser_ReturnsFalseWhenNormalClientWithBelow500CreditLimit()
     {
         
         // Arrange
@@ -156,15 +155,15 @@ public class UserServiceTests
         // Act
         var result = userService.AddUser(
             "Jan", 
-            "Andrzejewicz", 
+            "Kowalski", 
             "kowalski@kowalski.pl",
             DateTime.Parse("2000-01-01"),
-            6
+            1
         );
 
         // Assert
         Assert.False(result);
-    }*/
+    }
     
     [Fact]
     public void AddUser_ThrowsArgumentExceptionWhenUserCreditLimitDoesNotExist()
@@ -186,15 +185,6 @@ public class UserServiceTests
         Assert.Throws<ArgumentException>(action);
     }
     
-    // AddUser_ReturnsFalseWhenMissingAtSignAndDotInEmail
-    // AddUser_ReturnsFalseWhenYoungerThen21YearsOld
-    // AddUser_ReturnsTrueWhenVeryImportantClient
-    // AddUser_ReturnsTrueWhenImportantClient
-    // AddUser_ReturnsTrueWhenNormalClient
-    // AddUser_ReturnsFalseWhenNormalClientWithNoCreditLimit    ?
-    // AddUser_ThrowsExceptionWhenUserDoesNotExist
-    // AddUser_ThrowsExceptionWhenUserNoCreditLimitExistsForUser
-    
     [Fact]
     public void AddUser_ThrowsArgumentExceptionWhenClientDoesNotExist()
     {
@@ -214,4 +204,13 @@ public class UserServiceTests
         // Assert
         Assert.Throws<ArgumentException>(action);
     }
+    
+    // AddUser_ReturnsFalseWhenMissingAtSignAndDotInEmail
+    // AddUser_ReturnsFalseWhenYoungerThen21YearsOld
+    // AddUser_ReturnsTrueWhenVeryImportantClient
+    // AddUser_ReturnsTrueWhenImportantClient
+    // AddUser_ReturnsTrueWhenNormalClient
+    // AddUser_ReturnsFalseWhenNormalClientWithNoCreditLimit    ?
+    // AddUser_ThrowsExceptionWhenUserDoesNotExist
+    // AddUser_ThrowsExceptionWhenUserNoCreditLimitExistsForUser
 }
