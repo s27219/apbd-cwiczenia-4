@@ -23,7 +23,6 @@ public class UserServiceTests
     }
     
     
-    //new
     [Fact]
     public void AddUser_ReturnsFalseWhenLastNameIsEmpty()
     {
@@ -204,13 +203,4 @@ public class UserServiceTests
         // Assert
         Assert.Throws<ArgumentException>(action);
     }
-    
-    // AddUser_ReturnsFalseWhenMissingAtSignAndDotInEmail
-    // AddUser_ReturnsFalseWhenYoungerThen21YearsOld
-    // AddUser_ReturnsTrueWhenVeryImportantClient
-    // AddUser_ReturnsTrueWhenImportantClient
-    // AddUser_ReturnsTrueWhenNormalClient
-    // AddUser_ReturnsFalseWhenNormalClientWithNoCreditLimit    ?
-    // AddUser_ThrowsExceptionWhenUserDoesNotExist
-    // AddUser_ThrowsExceptionWhenUserNoCreditLimitExistsForUser
 }
